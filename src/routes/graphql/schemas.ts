@@ -1,5 +1,9 @@
 import { Type } from '@fastify/type-provider-typebox';
 import { GraphQLObjectType, GraphQLSchema } from 'graphql';
+import { MemberTypeQueries } from './queries/member.js';
+import { PostsMutation, PostsQueries } from './queries/posts.js';
+import { UsersQueries } from './queries/users.js';
+import { ProfileQueries } from './queries/profile.js';
 import { queries } from './queries.js';
 import { mutations } from './mutations.js';
 
@@ -25,25 +29,10 @@ export const createGqlResponseSchema = {
 export const graphqlSchema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'Query',
-    fields: {
-      ...queries,
-    },
+    fields: queries,
   }),
   mutation: new GraphQLObjectType({
     name: 'Mutation',
-    fields: {
-      ...mutations,
-    },
+    fields: mutations,
   }),
 });
-/* const schema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: 'RootQuery',
-    fields: {
-      testString: {
-        type: GraphQLString,
-        resolve: async () => 'Hello World!',
-      },
-    },
-  }),
-}); */
