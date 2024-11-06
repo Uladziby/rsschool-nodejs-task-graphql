@@ -29,7 +29,7 @@ export const PostsQueries = {
 export const PostsMutation = {
   createPost: {
     type: PostsTypeGraphQL,
-    args: { input: { type: CreatePostInputType } },
+    args: { dto: { type: CreatePostInputType } },
     async resolve(__, { dto }, { prisma }: Context) {
       return prisma.post.create({ data: dto });
     },
