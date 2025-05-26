@@ -7,6 +7,7 @@ import {
 } from 'graphql';
 import { MemberTypeId } from '../../member-types/schemas.js';
 import { Context } from '../queries/member.js';
+import { IContext, Member } from '../types.js';
 
 export const MemberTypeIdGql: GraphQLEnumType = new GraphQLEnumType({
   name: 'MemberTypeId',
@@ -16,13 +17,7 @@ export const MemberTypeIdGql: GraphQLEnumType = new GraphQLEnumType({
   },
 });
 
-export interface Member {
-  id: `${MemberTypeId}`;
-  discount: number;
-  postLimitPerMonth: number;
-}
-
-export const MemberType: GraphQLObjectType<Member, Context> = new GraphQLObjectType({
+export const MemberType: GraphQLObjectType<Member, IContext> = new GraphQLObjectType({
   name: 'MemberType',
   fields: {
     id: { type: new GraphQLNonNull(MemberTypeIdGql) },
